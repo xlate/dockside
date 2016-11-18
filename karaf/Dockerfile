@@ -10,11 +10,12 @@ RUN curl -O http://archive.apache.org/dist/karaf/${KARAF_VERSION}/apache-karaf-$
     && unzip apache-karaf-${KARAF_VERSION}.zip -d ${INSTALL_DIR} \
     && rm apache-karaf-${KARAF_VERSION}.zip \
     && rm ${KARAF_BASE}/bin/setenv \
+    && rm ${KARAF_BASE}/etc/org.apache.karaf.features.cfg \
     && rm ${KARAF_BASE}/etc/org.ops4j.pax.logging.cfg
 
-ADD setenv ${KARAF_BASE}/bin
-ADD org.ops4j.pax.logging.cfg ${KARAF_BASE}/etc
-ADD features-boot.xml ${KARAF_BASE}/deploy 
+ADD setenv                        ${KARAF_BASE}/bin
+ADD org.apache.karaf.features.cfg ${KARAF_BASE}/etc
+ADD org.ops4j.pax.logging.cfg     ${KARAF_BASE}/etc
 
 VOLUME [ "${KARAF_BASE}/data" ]
 
