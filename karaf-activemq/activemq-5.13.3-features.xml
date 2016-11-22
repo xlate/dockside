@@ -5,10 +5,7 @@
 
 	<repository>mvn:org.apache.activemq/activemq-karaf/5.13.3/xml/features</repository>
 
-	<feature name="load-boot-features" install="auto">
-		<feature version="5.13.3">activemq</feature>
-		<feature version="5.13.3">activemq-broker</feature>
-		<!-- <feature version="5.13.3">activemq-web-console</feature> -->
-		<feature version="5.13.3">activemq-blueprint</feature>
+	<feature name="activemq-features" version="5.13.3" install="auto">
+		<feature>activemq-broker</feature>
 	</feature>
 </features>
