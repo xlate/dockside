@@ -17,5 +17,5 @@ RUN sed -i 's/^\(.*rootLogger.*\)out/\1stdout/' ${SERVICEMIX_BASE}/etc/org.ops4j
 
 VOLUME [ "${SERVICEMIX_BASE}/data" ]
 
-ENTRYPOINT ${SERVICEMIX_BASE}/bin/servicemix server
-EXPOSE 8181 8101
+ENTRYPOINT ${SERVICEMIX_BASE}/bin/servicemix
+EXPOSE 1099 8101 8181 44444 61616
