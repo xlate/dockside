@@ -11,7 +11,7 @@ ADD http://archive.apache.org/dist/servicemix/servicemix-7/${SERVICEMIX_VERSION}
 
 RUN unzip -q /opt/servicemix.zip -d /opt/ \
  && ln -s /opt/apache-servicemix-${SERVICEMIX_VERSION} ${SERVICEMIX_BASE} \
- && rm /opt/servicemix.zip.zip
+ && rm /opt/servicemix.zip
 
 RUN sed -i 's/^\(.*rootLogger.*\)out/\1stdout/' ${SERVICEMIX_BASE}/etc/org.ops4j.pax.logging.cfg
 
