@@ -1,26 +1,21 @@
-FROM xlate/openjdk
-MAINTAINER Michael Edgar, www.xlate.io
+FROM openjdk:alpine
+MAINTAINER Michael Edgar <michael@xlate.io>
 
-ENV KARAF_VERSION 4.0.6
 ENV INSTALL_DIR /opt
+ENV KARAF_VERSION 4.0.8
 ENV KARAF_BASE ${INSTALL_DIR}/karaf
 
-RUN curl http://archive.apache.org/dist/karaf/${KARAF_VERSION}/apache-karaf-${KARAF_VERSION}.tar.gz -o /tmp/karaf.tar.gz \
-    && tar xzf /tmp/karaf.tar.gz -C /opt/ \
-    && ln -s /opt/apache-karaf-${KARAF_VERSION} /opt/karaf \
-    && rm /tmp/karaf.tar.gz
+RUN apk add --no-cache bash gawk sed grep bc coreutils unzip
 
-#RUN rm ${KARAF_BASE}/bin/setenv \
-RUN rm ${KARAF_BASE}/etc/org.apache.karaf.features.cfg
+ADD http://archive.apache.org/dist/karaf/${KARAF_VERSION}/apache-karaf-${KARAF_VERSION}.zip /opt/karaf.zip
 
-RUN rm -rf /opt/karaf/deploy/README  \
-    && sed -i 's/^\(.*rootLogger.*\)out/\1stdout/' /opt/karaf/etc/org.ops4j.pax.logging.cfg
+RUN unzip -q /opt/karaf.zip -d /opt/ \
+ && ln -s /opt/apache-karaf-${KARAF_VERSION} ${KARAF_BASE} \
+ && rm /opt/karaf.zip
 
+RUN sed -i 's/^\(.*rootLogger.*\)out/\1stdout/' ${KARAF_BASE}/etc/org.ops4j.pax.logging.cfg
 
-#ADD setenv                        ${KARAF_BASE}/bin
-ADD org.apache.karaf.features.cfg ${KARAF_BASE}/etc
-
-#VOLUME [ "${KARAF_BASE}/data" ]
+VOLUME [ "${KARAF_BASE}/data" ]
 
 ENTRYPOINT ${KARAF_BASE}/bin/karaf server
 EXPOSE 8181 8101
