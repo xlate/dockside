@@ -2,7 +2,7 @@ FROM openjdk:alpine
 MAINTAINER Michael Edgar <michael@xlate.io>
 
 ENV INSTALL_DIR /opt
-ENV KARAF_VERSION 4.0.8
+ENV KARAF_VERSION 4.0.9
 ENV KARAF_BASE ${INSTALL_DIR}/karaf
 
 RUN apk add --no-cache bash gawk sed grep bc coreutils unzip curl
