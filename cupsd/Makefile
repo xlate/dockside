@@ -10,4 +10,5 @@ execbash:
     docker exec -it cupsd /bin/bash
 
 clean:
-    docker kill cupsd
+    -docker kill cupsd
+    -docker rmi xlate/cupsd
