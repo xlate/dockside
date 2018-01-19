@@ -1,4 +1,4 @@
-FROM openjdk:alpine
+FROM openjdk:8-jre-alpine
 MAINTAINER Michael Edgar <michael@xlate.io>
 
 ENV INSTALL_DIR /opt
