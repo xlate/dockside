@@ -1,4 +1,4 @@
-FROM xlate/wildfly
+FROM xlate/wildfly:10.1.0.Final
 MAINTAINER Michael Edgar <michael@xlate.io>
 
 ENV MYSQL_CONNECTOR_VERSION 5.1.45
